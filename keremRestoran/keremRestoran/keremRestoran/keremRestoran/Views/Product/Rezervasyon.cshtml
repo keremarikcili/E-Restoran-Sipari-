@@ -1,0 +1,40 @@
+﻿@model keremRestoran.Models.RestoranUserÜrünContainer;
+@{
+    ViewData["Title"] = "Rezervasyon";
+
+}
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h3>Rezervasyon Sistemine Hoşgeldiniz !</h3>
+
+
+
+
+    <div>
+        <label for="meeting-time">Rezervasyon tarihini ve zamanını seçiniz :(En fazla 10 gün sonraya seçilebilir!</label>
+
+        <input type="datetime-local" id="meeting-time"
+               name="meeting-time"
+               min="@Model.user." max="2020-06-20T00:00">
+
+
+
+        <button onclick="myFunction()">Rezervasyon Yap</button>
+
+        <script>
+            function myFunction() {
+                 alert("Rezervasyonunuz başarılı bir şekilde gerçekleşti.@Model.user.userName");
+            }
+        </script>
+
+
+    </div>
+
+
+
+
+</body>
+</html>
+

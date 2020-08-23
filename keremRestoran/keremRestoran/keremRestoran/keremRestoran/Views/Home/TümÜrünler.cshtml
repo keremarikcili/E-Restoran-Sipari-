@@ -1,0 +1,55 @@
+﻿@model keremRestoran.Models.RestoranUserÜrünContainer;
+
+@{
+    ViewData["Title"] = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <h3 class="bg-success">Ürünler</h3>
+            <div class="panel-body">
+                <div class="row">
+                    @foreach (var product in Model.RestoranUserÜrünList)
+                    {
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <img src="@product.GetPath()" class="img-responsive" style="width:100%;" />
+                            <div class="text-info">@product.Name</div>
+                            <div class="text-info">@product.Price TL</div>
+                            <a href="javascript:AddToCart;" onclick="AddToCart('@product.Id')" class="btn btn-info float-right">+ ADD</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function AddToCart(productId) {
+        $.ajax({
+            method: "GET",
+            url: '@Url.Action("AddProductToCart","User")' + "?id=" + productId
+        })
+        .done(function (msg) {
+            alert("Ürün Sepete Eklendi");
+            UpdateCart();
+        });
+    }
+
+    function UpdateCart() {
+        $.ajax({
+            method: "GET",
+            url: '@Url.Action("UserCartCount", "User")'
+        })
+            .done(function (msg) {
+              $("#CartItemCount").html(msg);
+        });
+
+    }
+
+
+</script>
+
+

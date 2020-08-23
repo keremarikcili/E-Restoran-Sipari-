@@ -1,0 +1,50 @@
+﻿@model keremRestoran.Models.RestoranUserÜrünContainer
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    decimal total = 0;
+    int toplam = 0;
+}
+<h3 class="bg">Sepetim</h3>
+<div class="panel-body">
+    @if (Model.user.Cart.Count == 0)
+    {
+        <span>Sepetinizde ürün yok Lütfen Ürün Ekleyiniz</span>
+    }
+    @foreach (var item in Model.user.Cart)
+    {
+        if (item.Quantity != 0)
+        {
+            <div class="row">
+                <div class=" col-sm-4"></div><div class=" col-sm-4">@item.Name</div><div class=" col-sm-2">@item.Price TL</div><div class=" col-sm-2">@item.Quantity Adet</div>
+            </div>
+
+        }
+        toplam = Convert.ToInt32(total);
+        total = total + (item.Price * item.Quantity);
+       
+
+    }
+    @if (total > 0)
+    {
+        <button onclick="myFunction()">Ödeme Yap</button>
+        <p>Ödemeniz gereken Toplam Ücret  @total</p>
+
+        <script>
+            function myFunction() {
+
+                alert("Ödemeniz başarılı bir şekilde gerçekleşti.@Model.user.userName @total");
+
+            }
+        </script>
+    }
+    else
+    {
+        <p>Sipariş ücretiniz minimum 10 tl olmalıdır !</p>
+    }
+
+
+</div>
+

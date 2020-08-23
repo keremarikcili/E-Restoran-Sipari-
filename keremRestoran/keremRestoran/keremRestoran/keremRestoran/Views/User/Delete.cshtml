@@ -1,0 +1,24 @@
+﻿@model keremRestoran.Models.User
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutStart.cshtml";
+}
+<h2>Silme işlemi</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="User" asp-action="Delete">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.userName" class="control-label"></label>
+                <input asp-for="@Model.userName" class="form-control" required type="text" />
+                <span asp-validation-for="userName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
